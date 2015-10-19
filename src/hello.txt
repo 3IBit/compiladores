@@ -1,5 +1,7 @@
 program HelloWorld;
 
+// ISSO É UM COMENTÁRIO
+
 begin
   writeln('Hello World');
 end.

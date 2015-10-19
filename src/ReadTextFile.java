@@ -28,31 +28,14 @@ public class ReadTextFile extends JFrame {
 		// get Path to user-selected file or directory
 		Path path = getFileOrDirectoryPath();
 		String pathString = path.toString();
-		File file = new File(pathString);
-
-        FileInputStream fis = null;
-        String texto = "";
+		
+		Lexica lex = new Lexica(pathString);
+ 
         
-        try {
-            fis = new FileInputStream(file);
-            int content;
-            while ((content = fis.read()) != -1) {
-                texto += (char) content;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (fis != null) {
-                    fis.close();
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
+      
         
         
-        JTextArea textArea = new JTextArea(texto);
+        JTextArea textArea = new JTextArea();//JTextArea(String a ser exibido)
         textArea.setLineWrap(true); //quebra de linha automática
         add(textArea);
 
