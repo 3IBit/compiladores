@@ -42,6 +42,12 @@ public class Lexica {
             	 
                  texto += (char) content;
                  
+                 
+                 if(texto == " " || texto == "\n"){
+                	 break;
+                	 
+                 }else{
+                 
                  // 
                 	        switch (content) {
                 	            case 1:
@@ -68,6 +74,8 @@ public class Lexica {
                 	            default:
                 	                 System.out.println();
                 	         }
+                	        
+                 }//else
                
 //
                  
