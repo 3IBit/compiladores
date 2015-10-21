@@ -2,6 +2,8 @@ program HelloWorld;
 
 // ISSO É UM COMENTÁRIO
 
+var nome, idade, texto;
+
 begin
   writeln('Hello World');
 end.

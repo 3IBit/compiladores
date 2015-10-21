@@ -1,22 +1,28 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Token {
 	
-	private String tokens[] = { "var", "identificador", "begin", "end", ";", "(", ")", "end." };
-
-	public String[] getTokens() {
-		return tokens;
-	}
-
-	public void setTokens(String tokens[]) {
-		this.tokens = tokens;
+	List<String> id  = new ArrayList<String>();
+	List<String> var = new ArrayList<String>();
+	
+	public void addVariable(String var){
+	    this.var.add(var);
+				
 	}
 	
-	
-	public String searchToken(String token){
-		
-		return token;
-		
+	public void addID(String id){
+	    this.id.add(id);
+				
 	}
+	
+	public void showVariable(){
+		for(int i = 0; i < var.size(); i++){
+			System.out.printf("%s ", this.var.get(i));
+		}
+	}
+	
+
 	
 	
 	

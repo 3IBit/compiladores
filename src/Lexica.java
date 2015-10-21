@@ -1,8 +1,7 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.StringTokenizer;
-import java.util.regex.Pattern;
+
 
 /*
  * DATA: 12/10/2015
@@ -15,6 +14,8 @@ import java.util.regex.Pattern;
  * inventado por nós. O analisador léxico é a primeira etapa de um compilador, logo após virá a análise sintática.
  * */
 public class Lexica {
+	
+	private String keyword[] = { "var", "identificador", "begin", "end", ";", "(", ")", "end.", "program" };
 	
 	public String textFile = "";
 	
@@ -47,31 +48,47 @@ public class Lexica {
              Token token = new Token();
              
              for(int i=0; i<linhas.length; i++){
-            	 
+            	 String searchWord = "";
+            	 String[] wordSplit = null;
         		 String caracter = linhas[i];
         		 
         		   if(caracter.startsWith("//"))
         		   {
-        			   
+        			   System.out.println("Passou aqui");
         			   break;
         			   
         		   }else{
-            	 
-            	 for(int j = 0; j < linhas[i].length(); j++){
 
+        			   System.out.println("Passou aqui2");
+            	 for(int j = 0; j < linhas[i].length(); j++){
             	
           	       switch (caracter.charAt(j)) {
      	            case 'p':
-                           if(caracter.startsWith("program")){
-                        	   //é aceito, separar em ID E HELLOWORD ATÉ O PONTO E VÍRGULA
-
-                               System.out.println("program HelloWord;");
+  	            	       searchWord = "program";
+                           wordSplit = caracter.split(" ");
+                           for(String string : wordSplit){
+                        	   if(string.trim().equals("program")){
+                        	     token.addID(string);
+                        	     System.out.printf("Adicionado com sucesso. ID = %s", string);
+                        	   }
+                        	   else
+                        		   //quando não for program for outra palavra fazer alguns métodos para verificação
+                        		   System.out.println("Não é");
+                        	   
                            }
                         	  //pega do caracter j até o ;
      	                break;
      	            case 'v':
+     	            	System.out.println("To aqui");
      	            	if(caracter.substring(j, j + 2) == "var"){
-                      	  System.out.println("Token aceito: var");
+     	            		String ch = caracter.replace("var", "");
+     	            		System.out.println(ch);
+     	            		String[] car = ch.split(",");
+     	            		
+     	            		for(String string : car){
+         	            		token.addVariable(string);	
+     	            		}
+     	            		token.showVariable();
                         }
      	                break;
      	            case 'b':
@@ -121,6 +138,26 @@ public class Lexica {
 		return 0;
     	 
      }
+     
+     
+     
+     public boolean searchToken(String caracter){
+    	
+ 		
+ 		boolean status = false;
+ 		
+ 		for(String string : keyword){
+ 			if(string.trim().toUpperCase() == caracter.trim().toUpperCase())
+ 			{
+ 				status = true;
+ 				System.out.println(status);
+ 			} 
+
+        }
+ 		
+ 		return status;
+ 		
+ 	}
      
      
 
